@@ -6,8 +6,6 @@ const postDb = require('../posts/postDb');
 
 
 router.get('/', getUsers);
-
-
 router.post('/', validateUser, createUser);
 router.get('/:id', validateUserId, getUserById);
 router.delete('/:id', validateUserId, deleteUser);
@@ -102,7 +100,7 @@ function validateUserId(req, res, next) {
         .catch(() => {
             res.status(500).json({ message: "invalid user id" })
         })
-};
+}
 
 function validateUser(req, res, next) {
     if (Object.keys(req.body).length) {
@@ -117,7 +115,7 @@ function validateUser(req, res, next) {
     else {
         res.status(400).json({ message: "missing required name field" })
     }
-};
+}
 
 function validatePost(req, res, next) {
     if (Object.keys(req.body).length) {
@@ -132,6 +130,6 @@ function validatePost(req, res, next) {
     else {
         res.status(400).json({ message: "missing required text field" })
     }
-};
+}
 
 module.exports = router
